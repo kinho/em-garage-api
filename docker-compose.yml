@@ -1,0 +1,39 @@
+name: em-garage
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: em-garage-mongodb
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - ./data/mongodb:/data/db
+    networks:
+      - emg-network
+
+  api:
+    container_name: em-garage-api
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: production
+    ports:
+      - 4000:4000
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/home/node
+      - /home/node/node_modules
+    env_file:
+      - ./.env
+    environment:
+      - MONGODB_HOST=mongodb
+    networks:
+      - emg-network
+
+networks:
+  emg-network:
+    driver: bridge
