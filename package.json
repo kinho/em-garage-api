@@ -6,7 +6,8 @@
   "description": "Express MongoDB Garage Api",
   "scripts": {
     "start": "tsx src/main.ts",
-    "start:dev": "tsx watch src/main.ts"
+    "start:dev": "tsx watch src/main.ts",
+    "test": "mocha"
   },
   "dependencies": {
     "@typegoose/typegoose": "^12.10.1",
@@ -21,8 +22,17 @@
     "tsx": "^4.19.2"
   },
   "devDependencies": {
+    "@types/chai": "^4.3.10",
     "@types/express": "^5.0.0",
+    "@types/mocha": "^10.0.6",
     "@types/node": "^22.13.1",
+    "@types/sinon": "^17.0.3",
+    "@types/supertest": "^2.0.16",
+    "chai": "^4.3.10",
+    "mocha": "^10.4.0",
+    "sinon": "^17.0.1",
+    "sinon-chai": "^4.0.0",
+    "supertest": "^6.3.4",
     "typescript": "^5.7.3"
   }
 }
